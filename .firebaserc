@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "fitness-tracker-project": {
+      "hosting": {
+        "fitness-tracker-project": [
+          "fitness-tracker-project"
+        ]
+      }
+    }
+  }
+}
