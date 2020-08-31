@@ -4,6 +4,7 @@ import { Subject, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Exercise } from './exercise.model';
+import { UIService } from '../shared/ui.service';
 
 @Injectable({ providedIn: 'root' })
 export class TrainingService {
@@ -20,10 +21,11 @@ export class TrainingService {
   private runningExercise: Exercise;
   private firebaseSubs: Subscription[] = [];
 
-  constructor(private db: AngularFirestore) {
+  constructor(private db: AngularFirestore, private uiService: UIService) {
   }
 
   fetchAvailableExercises() {
+    this.uiService.loadingStateChanged.next(true);
     this.firebaseSubs.push(this.db.collection('availableExercises').snapshotChanges().pipe(map(docArray => {
       return docArray.map(doc => {
         return {
@@ -34,6 +36,7 @@ export class TrainingService {
         };
       });
     })).subscribe((exercises: Exercise[]) => {
+      this.uiService.loadingStateChanged.next(false);
       this.availableExercises = exercises;
       this.exercisesChanged.next(this.availableExercises.slice());
     }));
