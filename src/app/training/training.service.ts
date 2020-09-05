@@ -34,7 +34,6 @@ export class TrainingService {
     }, error => {
       this.store.dispatch(new UI.StopLoading());
       this.uiService.showSnackbar('Fetching exercises failed, please try again later', null, 3000);
-      this.store.dispatch(new Training.SetAvailableTrainings(null));
     }));
   }
 
