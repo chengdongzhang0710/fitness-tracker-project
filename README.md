@@ -13,3 +13,5 @@ This fitness tracker application can implement:
 * User completing or cancelling the ongoing exercise;
 * Exercise records storing to cloud;
 * Past exercise records displaying, filtering and sorting.
+
+This project works with NgRx to manage application state.
